@@ -9,16 +9,28 @@ router.use(authMiddleware);
 
 router.get('/', async (req, res) => {
     try{
-        const accommodations = await Accommodation
-        .find()
-        .sort({'_id': -1})
-        .populate(['user', 'photos']);
 
+        var page = 1;
+
+        if(req.query.page)
+            var { page} = req.query;
+
+        const options = {
+            page: parseInt(page, 10),
+            sort: { createdAt: -1},
+            populate: ['user', 'photos']
+        };
+
+        console.log(page);
+
+        const accommodations = await Accommodation.paginate({}, options)
+        
         return res.json({
             success: true,
             data: accommodations
         });
     }catch(err){
+        console.log(err);
         return res.status(400).json({
             success: false,
             message: 'Cannot list Accommodations'
