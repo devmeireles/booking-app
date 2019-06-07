@@ -1,4 +1,5 @@
 const mongoose = require('../../database');
+const mongoosePaginate = require('mongoose-paginate');
 
 const Amenities = new mongoose.Schema({
     title: {
@@ -42,7 +43,7 @@ const AccommodationSchema = new mongoose.Schema({
     }
 });
 
-
+AccommodationSchema.plugin(mongoosePaginate);
 
 const Accommodation = mongoose.model('Accommodation', AccommodationSchema);
 
