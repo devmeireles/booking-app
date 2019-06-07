@@ -22,8 +22,34 @@ const AccommodationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    slug: {
+        type: String,
+        slug: "title",
+        slug_padding_size: 4,
+        unique: true
+    },
     description: {
         type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true
+    },
+    guests: {
+        type: Number,
+        required: true
+    },
+    bedrooms: {
+        type: Number,
+        required: true
+    },
+    beds: {
+        type: Number,
+        required: true
+    },
+    baths: {
+        type: Number,
         required: true
     },
     amenities: [Amenities],
@@ -37,6 +63,15 @@ const AccommodationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Photo',
     }],
+    availability: {
+        type: Boolean,
+        required: true,
+        default: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now
