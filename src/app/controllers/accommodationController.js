@@ -21,8 +21,6 @@ router.get('/', async (req, res) => {
             populate: ['user', 'photos']
         };
 
-        console.log(page);
-
         const accommodations = await Accommodation.paginate({}, options)
         
         return res.json({
@@ -30,7 +28,6 @@ router.get('/', async (req, res) => {
             data: accommodations
         });
     }catch(err){
-        console.log(err);
         return res.status(400).json({
             success: false,
             message: 'Cannot list Accommodations'
@@ -42,6 +39,24 @@ router.get('/:accommodationID', async (req, res) => {
     try{
         const accommodation = await Accommodation
         .findById(req.params.accommodationID)
+        .populate(['user', 'photos']);
+
+        return res.json({
+            success: true,
+            data: accommodation
+        });
+    }catch(err){
+        return res.status(400).json({
+            success: false,
+            message: 'Cannot list Accommodation'
+        });
+    }
+});
+
+router.get('/slug/:accommodationID', async (req, res) => {
+    try{
+        const accommodation = await Accommodation
+        .find({ 'slug': req.params.accommodationID })
         .populate(['user', 'photos']);
 
         return res.json({
@@ -129,7 +144,6 @@ router.put('/:accommodationID', async (req, res) => {
         });
         
     }catch(err){
-        console.log(err);
         res.status(400).send({ error: 'Error updating Accommodation'});
     }
 });
