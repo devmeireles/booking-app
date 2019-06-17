@@ -51,5 +51,24 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/:accommodationID', async (req, res) => {
+    try{
+        const review = await Review
+        .find({accommodation: req.params.accommodationID})
+        .populate(['user']);
+
+        return res.json({
+            success: true,
+            data: review
+        });
+    }catch(err){
+        console.log(err);
+        return res.status(400).json({
+            success: false,
+            message: 'Cannot list Accommodation'
+        });
+    }
+});
+
 
 module.exports = app => app.use('/review', router);
