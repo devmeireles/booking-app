@@ -17,6 +17,29 @@ const SleepingArrangements = new mongoose.Schema({
     }
 });
 
+const AddressSchema = new mongoose.Schema({
+    street:{
+        type: String,
+        required: true
+    },
+    region:{
+        type: String,
+        required: true
+    },
+    locality:{
+        type: String,
+        required: true
+    },
+    country:{
+        type: String,
+        required: true
+    },
+    zipCode:{
+        type: String,
+        required: true
+    }
+});
+
 const AccommodationSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -72,6 +95,7 @@ const AccommodationSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    address: [AddressSchema],
     createdAt: {
         type: Date,
         default: Date.now
