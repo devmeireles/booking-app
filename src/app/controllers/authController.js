@@ -90,7 +90,6 @@ router.post('/forgot-password', async (req, res) => {
 
         mailer.sendMail(mailOptions, function(error, info) {
             if (error) {
-                console.log(err);
                 return res.status(400).send({ error: 'Cannot send forgot password email'});
             }
 
@@ -99,7 +98,6 @@ router.post('/forgot-password', async (req, res) => {
         });
 
     }catch(err){
-        console.log(err);
         res.status(400).send({ error: 'Error on forgot password'});
     }
 });
@@ -110,8 +108,6 @@ router.post('/reset-password', async (req, res) => {
     try{
         const user = await User.findOne({ email })
             .select('+passwordResetToken, +passwordResetExpires');
-
-            console.log(user);
 
         if(!user)
             return res.status(400).send({ error: 'User not found'});
