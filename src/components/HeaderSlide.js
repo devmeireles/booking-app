@@ -68,7 +68,7 @@ export default class HeaderSlide extends Component {
                         <img
                             style={{}}
                             alt="" 
-                            src="https://a0.muscache.com/4ea/air/v2/pictures/b7ca8f0c-030a-401a-a3a6-fc3d50f3425f.jpg?t=c:3w-h2-gw,r:w3100-h2074-sfit,e:fjpg-c80" srcset="https://a0.muscache.com/4ea/air/v2/pictures/381cc337-5000-43e0-8685-32efdf0d978a.jpg?t=c:3w-h2-gw,r:w775-h518-sfit,e:fjpg-c80 775w, https://a0.muscache.com/4ea/air/v2/pictures/b7ca8f0c-030a-401a-a3a6-fc3d50f3425f.jpg?t=c:3w-h2-gw,r:w1550-h1037-sfit,e:fjpg-c80 1550w, https://a0.muscache.com/4ea/air/v2/pictures/b7ca8f0c-030a-401a-a3a6-fc3d50f3425f.jpg?t=c:3w-h2-gw,r:w3100-h2074-sfit,e:fjpg-c80 3100w" />
+                            src="https://a0.muscache.com/4ea/air/v2/pictures/b7ca8f0c-030a-401a-a3a6-fc3d50f3425f.jpg?t=c:3w-h2-gw,r:w3100-h2074-sfit,e:fjpg-c80"/>
                     </div>
 
                     <div>

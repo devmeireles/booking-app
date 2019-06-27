@@ -1,18 +1,31 @@
-import React from 'react';
-import {HashRouter, Switch, Route} from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import Home from './pages/Home';
+import { isAuthenticated } from "./services/auth";
+import Home from "./pages/Home";
 
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+        {...rest}
+        render={props =>
+            isAuthenticated() ? (
+                <Component {...props} />
+            ) : (
+                <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+            )
+        }
+    />
+);
 
 const Routes = () => (
-    <HashRouter>
+    <BrowserRouter>
         <Switch>
             <Route exact path="/" component={Home}></Route>
-            {/* <Route path="/movie/:id" component={Movie}></Route>
-            <Route path="/people/:id" component={People}></Route> */}
-            <Route render={ () => <h1>404 Error</h1> } />
+            <Route path="/signup" component={() => <h1>SignUp</h1>} />
+            <PrivateRoute path="/app" component={() => <h1>App</h1>} />
+            <Route path="*" component={() => <h1>Page not found</h1>} />
         </Switch>
-    </HashRouter>
+    </BrowserRouter>
 );
 
 export default Routes;
