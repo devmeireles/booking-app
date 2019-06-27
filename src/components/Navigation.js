@@ -65,7 +65,10 @@ class Navigation extends React.Component {
                     style={{ lineHeight: '64px' }}
                 >
                     <Menu.Item key="1">Home</Menu.Item>
-                    <Menu.Item key="2">Be a Host</Menu.Item>
+                    {localStorage.getItem("@Token") ?
+                        <Menu.Item key="2">Be a Host</Menu.Item>
+                        : null
+                    }
                     <Menu.Item key="3">Sign up</Menu.Item>
                     <Menu.Item key="4">
                         {localStorage.getItem("@Token") ?

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import { Row, Col, Card, Rate, Spin } from 'antd';
 
 import '../styles/GeneralStyles.css';
@@ -20,26 +21,28 @@ export default class Accommodation extends Component {
                 {
                     accommodations ?
                     accommodations.map((accommodation, index) => (
-                        <Col className="gutterRow" xs={24} sm={24} md={8} lg={6} xl={6} key={index}>
-                            <Card
-                                hoverable
-                                cover={
-                                    accommodation.photos.map((photo, subindex) =>
-                                        photo.primary ?
-                                        <img alt="example" src={photo.file} />
-                                        : null
-                                    )
-                                }
-                            >
-                                <div className="cardAccommodationInfo">
-                                    
-                                    <p className="cardAccommodationType">{accommodation.type} - {accommodation.address[0].region}</p>
-                                    <p className="cardAccommodationTitle">{accommodation.title}</p>
-                                    <p className="cardAccommodationPrice">R${accommodation.price} per day</p>
-                                    <Rate style={{ color: '#00c', fontSize: '14px', }} disabled allowHalf defaultValue={4.5} />
-                                </div>
-                            </Card>
-                        </Col>
+                        <Link to={`/accommodation/${accommodation.slug}`}>
+                            <Col className="gutterRow" xs={24} sm={24} md={8} lg={6} xl={6} key={index}>
+                                <Card
+                                    hoverable
+                                    cover={
+                                        accommodation.photos.map((photo, subindex) =>
+                                            photo.primary ?
+                                            <img alt="example" src={photo.file} />
+                                            : null
+                                        )
+                                    }
+                                >
+                                    <div className="cardAccommodationInfo">
+                                        
+                                        <p className="cardAccommodationType">{accommodation.type} - {accommodation.address[0].region}</p>
+                                        <p className="cardAccommodationTitle">{accommodation.title}</p>
+                                        <p className="cardAccommodationPrice">R${accommodation.price} per day</p>
+                                        <Rate style={{ color: '#00c', fontSize: '14px', }} disabled allowHalf defaultValue={4.5} />
+                                    </div>
+                                </Card>
+                            </Col>
+                        </Link>
                     ))
                     : <Spin />
                 }
