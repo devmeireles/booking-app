@@ -12,14 +12,34 @@ const { RangePicker } = DatePicker;
 
 
 export default class HeaderSlide extends Component {
-    constructor() {
-        super();
+    constructor(props){
+        super(props);
+
+        this.state = {
+            fixed: false
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener('scroll', () => {
+            if(window.scrollY > 400)  {
+                this.setState({
+                    fixed: true
+                });
+            }else{
+                this.setState({
+                    fixed: false
+                });
+            }
+
+        });
     }
 
     render(){
         return(
             <Header>
-                <Col span={8} className="formContainer">
+                <div className="overlayHeader"></div>
+                <Col xs={24} sm={24} md={8} lg={8} xl={8} className="formContainer">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <h1 className="boldFont formTitle">Meet awesome peoples in awesome places</h1>
                         <Form.Item label="Where">
@@ -65,7 +85,7 @@ export default class HeaderSlide extends Component {
                             src="https://images.pexels.com/photos/570020/pexels-photo-570020.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"/>
                     </div>
                 </Carousel>
-                <div className="navigationContainer">
+                <div className={this.state.fixed ? 'fixedMenu': 'navigationContainer'}>
                     <Navigation />
                 </div>
           </Header>

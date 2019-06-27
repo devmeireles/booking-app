@@ -1,3 +1,7 @@
+html{
+    overflow-X: hidden;
+}
+
 .ant-menu-dark, .ant-menu-dark .ant-menu-sub{
     background: transparent !important;
 }
@@ -15,12 +19,24 @@ ul.ant-menu.ant-menu-dark.ant-menu-root.ant-menu-horizontal {
     font-weight: bold;
 }
 
+.ant-form-item{
+    margin-bottom: 10px;
+}
+
+.overlayHeader{
+    height: 100vh;
+    width: 100vw;
+    background: #00000085;
+    z-index: 999;
+    position: absolute;
+}
+
 .boldFont{
     font-weight: bold;
 }
 
 .formTitle{
-    color: "#505050";
+    color: #505050;
 }
 
 .gutterRow {
@@ -83,4 +99,24 @@ ul.ant-menu.ant-menu-dark.ant-menu-root.ant-menu-horizontal {
     left: 100px;
     background: #FFF;
     padding: 20px !important;
+    border-radius: 3px;
+}
+
+.fixedMenu{
+    position: fixed;
+    top: 0;
+    background: #439eb5;
+    z-index: 999;
+    width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+@media screen and (max-width: 960px) {
+    .ant-layout-content{
+        padding: 0px !important;
+    }
+
+    .formContainer{
+        left: 0px !important;
+    }
 }

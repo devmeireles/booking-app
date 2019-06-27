@@ -20,7 +20,7 @@ export default class Accommodation extends Component {
                 {
                     accommodations ?
                     accommodations.map((accommodation, index) => (
-                        <Col className="gutterRow" span={6} key={index}>
+                        <Col className="gutterRow" xs={24} sm={24} md={8} lg={6} xl={6} key={index}>
                             <Card
                                 hoverable
                                 cover={
